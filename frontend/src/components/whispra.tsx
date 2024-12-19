@@ -76,7 +76,7 @@ export default function Whispra() {
 
       <div className="flex flex-col lg:flex-row gap-6 flex-grow overflow-hidden">
         {/* File Upload Section */}
-        <div className="w-full lg:w-1/3 bg-white rounded-lg shadow-md p-4">
+        <div className="w-full lg:w-1/3 bg-white rounded-xl shadow-lg shadow-blue-100/50 p-4">
           <h2 className="text-xl font-semibold mb-4 flex items-center">
             <FileAudio className="mr-2 h-5 w-5 text-blue-600" />
             Audio Files
@@ -87,12 +87,13 @@ export default function Whispra() {
                 type="file"
                 accept="audio/*"
                 onChange={handleFileChange}
-                className="flex-1"
+                className="flex-1 rounded-xl"
                 multiple
               />
               <Button
                 onClick={handleTranscribe}
                 disabled={!files.some(f => f.status === 'pending')}
+                className="rounded-full"
               >
                 <Upload className="mr-2 h-4 w-4" />
                 Transcribe
@@ -100,7 +101,7 @@ export default function Whispra() {
             </div>
             <ScrollArea className="h-[calc(100vh-20rem)] border rounded-md p-2">
               {files.map((file, index) => (
-                <div key={index} className="mb-2 flex items-center justify-between rounded-md border p-2 text-sm">
+                <div key={index} className="mb-2 flex items-center justify-between rounded-lg border p-2 text-sm">
                   <span className="truncate">{file.file.name}</span>
                   <div className="flex items-center">
                     {file.status === 'transcribing' && (
@@ -114,6 +115,7 @@ export default function Whispra() {
                       size="sm"
                       onClick={() => handleRemoveFile(index)}
                       disabled={file.status === 'transcribing'}
+                      className="rounded-full"
                     >
                       <X className="h-4 w-4" />
                     </Button>
@@ -125,7 +127,7 @@ export default function Whispra() {
         </div>
 
         {/* Chat Section */}
-        <div className="flex-grow bg-white rounded-lg shadow-md p-4 flex flex-col">
+        <div className="flex-grow bg-white rounded-xl shadow-lg shadow-blue-100/50 p-4 flex flex-col">
           <h2 className="text-xl font-semibold mb-4 flex items-center">
             <MessageSquare className="mr-2 h-5 w-5 text-blue-600" />
             Chat
@@ -159,7 +161,7 @@ export default function Whispra() {
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               placeholder="Type your message..."
-              className="flex-1"
+              className="flex-1 rounded-xl"
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                   e.preventDefault()
@@ -167,7 +169,7 @@ export default function Whispra() {
                 }
               }}
             />
-            <Button onClick={handleSendMessage} disabled={!question.trim()}>
+            <Button onClick={handleSendMessage} disabled={!question.trim()} className="rounded-full">
               <Send className="mr-2 h-4 w-4" />
               Send
             </Button>
