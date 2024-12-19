@@ -1,11 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true, // Enables React's strict mode for better debugging
 };
 
-module.exports = {
-  experimental: {
-    appDir: true,
-  },
-};
+export default nextConfig;
