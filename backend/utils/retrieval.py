@@ -1,16 +1,30 @@
-from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
+from sentence_transformers import SentenceTransformer
 
-model = SentenceTransformer('all-MiniLM-L6-v2')
+# Initialize SBERT model
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
-def build_index(text_chunks):
-    embeddings = model.encode(text_chunks)
-    index = faiss.IndexFlatL2(embeddings.shape[1])
-    index.add(np.array(embeddings))
-    return index, embeddings
+# Initialize FAISS index
+dimension = 384  # SBERT embedding size
+index = faiss.IndexFlatL2(dimension)
 
-def get_top_k_chunks(question, index, text_chunks, embeddings, k=3):
-    question_embedding = model.encode([question])
-    distances, indices = index.search(np.array(question_embedding), k)
-    return [text_chunks[i] for i in indices[0]]
+# Metadata storage (map embeddings to text or IDs)
+metadata = {}
+
+def add_embedding(text, metadata_id):
+    """
+    Add an embedding to FAISS index with metadata.
+    """
+    embedding = model.encode([text])
+    index.add(np.array(embedding))  # Add to FAISS
+    metadata[len(metadata)] = {"id": metadata_id, "text": text}
+
+def search_embeddings(query, k=5):
+    """
+    Search for similar embeddings.
+    """
+    query_embedding = model.encode([query])
+    distances, indices = index.search(np.array(query_embedding), k)
+    results = [metadata[i] for i in indices[0] if i in metadata]
+    return results

@@ -2,3 +2,5 @@ env/
 __pycache__/
 temp/
 *.pyc
+.env
+test_embeddings.py
