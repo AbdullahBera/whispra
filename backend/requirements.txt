@@ -8,3 +8,4 @@ transformers
 pydub
 whisper
 openai-whisper
+python-dotenv
