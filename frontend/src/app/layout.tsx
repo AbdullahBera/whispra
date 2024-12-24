@@ -1,18 +1,22 @@
-import '../styles/globals.css';
+import { ToastProvider } from '@/components/providers/toast-provider'
+import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Whispra',
-  description: 'AI-powered audio transcription and Q&A',
-};
+  description: 'Audio transcription and Q&A app',
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ToastProvider />
+        {children}
+      </body>
     </html>
-  );
+  )
 }
