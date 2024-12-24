@@ -5,6 +5,10 @@ from utils.retrieval import build_index, get_top_k_chunks
 from utils.qa import generate_answer
 import os
 import logging
+from dotenv import load_dotenv  # Import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -30,7 +34,7 @@ logging.basicConfig(level=logging.INFO)
 TEMP_DIR = os.getenv("TEMP_DIR", "temp")
 
 
-@app.post("/transcribe/")
+@app.post("/transcribe")
 async def transcribe(file: UploadFile = File(...)):
     """
     Endpoint to transcribe audio and build FAISS index.

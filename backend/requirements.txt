@@ -7,3 +7,4 @@ requests
 transformers
 pydub
 whisper
+openai-whisper

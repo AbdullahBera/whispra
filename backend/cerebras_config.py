@@ -17,3 +17,6 @@ def load_api_key():
         api_key = input("Please enter your Cerebras API key: ").strip()
         save_api_key(api_key)
         return api_key
+
+def load_api_url():
+    return os.getenv("CEREBRAS_API_URL")

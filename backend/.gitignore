@@ -4,3 +4,4 @@ temp/
 *.pyc
 .env
 test_embeddings.py
+test_whisper.py
