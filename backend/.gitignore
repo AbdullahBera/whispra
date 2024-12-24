@@ -4,4 +4,6 @@ temp/
 *.pyc
 .env
 test_embeddings.py
-test_whisper.py
+test_whisper.pygi
+.DS_Store
+whispra_packages/
