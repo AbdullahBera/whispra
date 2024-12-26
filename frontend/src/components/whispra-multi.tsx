@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { Upload, Mic, Send, Loader2, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
